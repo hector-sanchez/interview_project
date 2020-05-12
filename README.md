@@ -4,7 +4,7 @@
 
 It's time to get prepared for your journey. We don't expect you to spend
 more than 4 hours on this. You may not complete all the exercises, and that's ok.
-To start we'll require a working ruby installation with the bundler gem available. 
+To start we'll require a working ruby installation with the bundler gem available.
 You may need to install chromedriver as well.
 
 * `bundle install`
@@ -112,24 +112,3 @@ conference he attended and said something about using a "JOIN".
 
 Please add a table to the_logz that displays each of the years from the seed
 data and how many requests have been made. Use "the JOINs".
-
-### BONUS ROUND: Challenge #9
-
-You'll never guess. CEO refreshed too often and sprained a finger. There's a
-board meeting tonight (we only have one board member - the CEO). Regardless,
-we need to get this thing real-time, so it can go up on a big screen in the
-board room.
-
-Please update the_logz page to pull fresh data every 10 seconds.
-
-### DOUBLE BONUS ROUND: Challenge #10
-
-Oh no! Our biggest client has threated to leave if we can't fix our prediction
-model. They *claim*, that the United States can't support more than 750MM people
-even in 2099. I think this means we need to support a logistic growth model as
-well as the exponential growth model.
-
-Please add a radio button to the form that specifies the growth model as either
-exponential or logistic. Customers should only see the toggle if they enter a
-year greater than 1990. In deference to our biggest client, the default should
-be logistic.
