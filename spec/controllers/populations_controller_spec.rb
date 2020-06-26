@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe PopulationsController, type: :controller do
+  before do
+    create(:population, year: 1900)
+  end 
+
   render_views
 
   describe "GET #index" do

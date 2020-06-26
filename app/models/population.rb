@@ -1,23 +1,25 @@
 class Population < ApplicationRecord
 
-  def self.min_year
-    Population.all.map(&:year).min.year
-  end
+  scope :last_known_prior_to_year, ->(year) { where('year < ?', max_year).where('year < ?', year).order(:year).last }
 
   def self.get(year)
-    year = year.to_i
-
     return 0 if year < min_year
+    
+    population = find_by_year(year)
 
-    pop = nil
-    until pop
-      pop = Population.find_by_year(Date.new(year))
-      year = year - 1
-    end
-
-    return pop.population if pop
-
-    nil
+    return population.population if population
+    return order(:year).last.population if year > max_year
+  
+    last_known_prior_to_year(year).population
   end
 
+  private
+
+  def self.min_year
+    order(:year).first.year
+  end
+
+  def self.max_year
+    order(:year).last.year
+  end
 end
