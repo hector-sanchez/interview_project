@@ -5,6 +5,7 @@ RSpec.describe Population, type: :model do
     create(:population, year: 1900, population: 76_212_168)
     create(:population, year: 1990, population: 248_709_873)
     create(:population, year: 1902, population: 76_212_168)
+    create(:population, year: 1909, population: 76_212_168)
   end
 
   it "should accept a year we know and return the correct population" do
@@ -14,7 +15,7 @@ RSpec.describe Population, type: :model do
 
   it "should accept a year we don't know and return the previous known population" do
     expect(Population.get(1902)).to eq(76212168)
-    expect(Population.get(1908)).to eq(76212168)
+    expect(Population.get(1908)).to eq(28048642)
   end
 
   it "should accept a year that is before earliest known and return zero" do
