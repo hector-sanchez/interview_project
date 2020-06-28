@@ -1,6 +1,9 @@
 class Population < ApplicationRecord
   scope :last_known_prior_to_year, ->(year) { where('year < ?', max_year).where('year < ?', year).order(:year).last }
   
+  GROWTH_RATE = 0.09.freeze
+  MAX_YEAR = 2500.freeze
+
   class << self
     def get(year)
       return 0 if year < min_year
@@ -8,7 +11,7 @@ class Population < ApplicationRecord
       pop = find_by_year(year)
     
       return pop.population if pop
-      return last_known_population if year > max_year
+      return future_population(year) if year > max_year
     
       computed_population(year)
     end
@@ -16,8 +19,12 @@ class Population < ApplicationRecord
   
   private
   
-  def self.last_known_population
-    order(:year).last&.population
+  def self.future_population(year)
+    last_known  = order(:year).last
+    last_population  = last_known.population
+    (last_known.year..[MAX_YEAR, year].min).inject(last_population) do |lp, _|
+      lp + (lp * GROWTH_RATE)
+    end.to_i
   end
   
   def self.computed_population(year)
