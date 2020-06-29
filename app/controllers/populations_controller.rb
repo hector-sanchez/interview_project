@@ -3,15 +3,17 @@ class PopulationsController < ApplicationController
 
   def index
     if getting_population?
-      @year = params[:year]
-      @population = Population.get(@year.to_i)
+      pop = Population.get(params[:year].to_i)
+      @year = pop.year
+      @population = pop.population
+      @retrieved_as = pop.retrieved_as
     end
   end
 
   private
 
   def log
-    Log.create(year: @year, population: @population)
+    Log.create(year: @year, population: @population, processed_as: @retrieved_as)
   end
 
   def getting_population?

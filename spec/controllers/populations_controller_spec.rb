@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PopulationsController, type: :controller do
   before do
-    create(:population, year: 1900)
+    create(:population, year: 1900, population: 123)
   end 
 
   render_views
@@ -26,8 +26,8 @@ RSpec.describe PopulationsController, type: :controller do
     it "returns a population for a date" do
       get :index, params: { year: year }
 
-      expect(assigns(:year)).to eq "1900"
-      expect(assigns(:population)).to eq Population.get(year)
+      expect(assigns(:year)).to eq 1900
+      expect(assigns(:population)).to eq Population.get(year).population
     end
 
     it "logz" do

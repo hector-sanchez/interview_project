@@ -7,5 +7,6 @@ RSpec.describe Log, type: :model do
   it "has year and population" do
     expect(instance).to respond_to(:year)
     expect(instance).to respond_to(:population)
+    expect(instance).to respond_to(:processed_as)
   end
 end
