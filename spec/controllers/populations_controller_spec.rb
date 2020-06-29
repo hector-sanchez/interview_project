@@ -29,5 +29,13 @@ RSpec.describe PopulationsController, type: :controller do
       expect(assigns(:year)).to eq "1900"
       expect(assigns(:population)).to eq Population.get(year)
     end
+
+    it "logz" do
+      expect { get :index, params: { year: year } }.to change { Log.count }.by(1)
+    end
+    
+    it "does NOT log" do
+      expect { get :index }.not_to change { Log.count }
+    end
   end
 end
