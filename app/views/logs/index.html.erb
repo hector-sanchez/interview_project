@@ -1,10 +1,10 @@
-<h1>Logs</h1>
+<h3>Logs</h3>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Year</th>
-      <th>Population</th>
+      <th scope="col">Year</th>
+      <th scope="col">Population</th>
     </tr>
   </thead>
 
@@ -13,6 +13,45 @@
       <tr>
         <td><%= log.year %></td>
         <td><%= log.population %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Logs - grouped by year</h3>
+
+<table class="table">
+<hr />
+  <thead>
+    <tr>
+      <th scope="col">Year</th>
+      <th scope="col">Number of requests</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @logs_by_year.each do |y, n| %>
+      <tr>
+        <td><%= y %></td><td><%= n %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Logs - grouped by method of process</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Processed as</th>
+      <th scope="col">Number of requests</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @logs_by_processed_as.each do |pa, n| %>
+      <tr>
+        <td><%= pa %></td><td><%= n %></td>
       </tr>
     <% end %>
   </tbody>

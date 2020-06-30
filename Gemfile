@@ -51,7 +51,9 @@ group :test do
   gem 'webdrivers', '~> 4.0'
   gem 'database_cleaner-active_record'
   gem 'rails-controller-testing'
+  gem 'shoulda-matchers', '~> 4.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'bootstrap', '~> 4.5'
